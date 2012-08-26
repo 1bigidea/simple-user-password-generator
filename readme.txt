@@ -1,29 +1,37 @@
 === Simple User Password Generator ===
-Contributors: jakemgold
-Donate link: http://www.get10up.com/plugins/simple-user-password-generator-wordpress/
+Contributors: jakemgold, 10up
+Donate link: http://10up.com/plugins/simple-user-password-generator-wordpress/
 Tags: users, password, security
 Requires at least: 3.2
-Tested up to: 3.2.1
-Stable tag: 1.0
+Tested up to: 3.4.1
+Stable tag: 2.0
+License: GPLv2
 
-Allows administrators to generate a secure password when adding new users.
+Generate a secure password when adding or updating new users.
 
 == Description ==
 
-Users with the ability to add new users (typically just administrators) have a new button on the add users screen that allows them to generate a secure password.
+Users with the ability to manage users (administrators) have a new button on the add and edit user screens to generate a secure password.
 
-Also adds a "Encourage the user to change their password, once logged in." checkbox (checked automatically when generating a password) that encourages the user to change their password to something more memorable. The password change suggestion appears on the top of admin pages, and can be easily dismissed.
+Also adds an option to encourage the user to change their password, when logged in to the dashboard, as well as an option to send
+existing users the new, generated password.
 
-Simple and light weight. No new settings pages or configuration screens, and nothing added to the database. Just install and go!
+No new settings pages or configuration screens, nothing added to the database. Just install and go!
 
 Localization ready; includes Spanish translation. Other translations welcome!
 
 == Installation ==
 
-1. Install easily with the WordPress plugin control panel or manually download the plugin and upload the extracted folder to the `/wp-content/plugins/` directory
-1. Activate the plugin through the 'Plugins' menu in WordPress
-1. Start adding new users with automatically generated passwords from the Add New users screen!
+1. Install either via the WordPress.org plugin directory, or by uploading the files to your server.
+1. Activate the plugin through the 'Plugins' menu in WordPress.
+1. Get to work adding and editing users with automatically generated, secure passwords!
 
 == Screenshots ==
 
 1. New "Generate Password" button and "Encourage user to change their password" features seen on the add new users screen.
+
+== Changelog ==
+
+= 2.0 =
+* Adds password generation and email notification support when editing existing users.
+* Removes unnecessary code for resetting password on the actual profile editing screen.
