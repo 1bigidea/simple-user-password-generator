@@ -3,25 +3,10 @@
  Plugin Name: Simple User Password Generator
  Plugin URI: http://10up.com/plugins/simple-user-password-generator-wordpress/
  Description: Allows administrators to generate a secure password when adding new users.
- Version: 2.0.1
- Author: Jake Goldman (10up LLC)
+ Version: 2.0.2
+ Author: Jake Goldman, 10up
  Author URI: http://10up.com
-
-    Plugin: Copyright 2011 10up LLC (email : jake@10up.com)
-
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ License: GPLv2 or later
 */
 
 /**
@@ -45,11 +30,11 @@ class simple_user_password_generator {
 	}
 	
 	public function enqueue_script() {
-		if ( !apply_filters( 'show_password_fields', true ) || !current_user_can( 'edit_users' ) )
+		if ( ! apply_filters( 'show_password_fields', true ) || ! current_user_can( 'edit_users' ) )
 			return;
 			
-		wp_enqueue_script( 'simple-user-password-generator', plugin_dir_url( __FILE__ ) . 'simple-user-password-generator.js', array( 'jquery' ), '1.0' );	
-		
+		wp_enqueue_script( 'simple-user-password-generator', plugin_dir_url( __FILE__ ) . 'simple-user-password-generator.js', array( 'jquery' ), '2.0', true );
+
 		$js_trans = array(
 			'Generate' => esc_attr( __( 'Generate Password', 'simple-user-password-generator' ) ),
 			'PassChange' => __( 'Encourage the user to change their password, once logged in.', 'simple-user-password-generator' )
@@ -62,7 +47,7 @@ class simple_user_password_generator {
 	}
 	
 	public function user_register( $user_id ) {
-		if ( current_user_can( 'add_users' ) && !empty( $_POST['reset_password_notice'] ) )
+		if ( current_user_can( 'add_users' ) && ! empty( $_POST['reset_password_notice'] ) )
 			update_user_option( $user_id, 'default_password_nag', true, true );
 	}
 
@@ -75,23 +60,16 @@ class simple_user_password_generator {
 			<td><label for="send_password"><input type="checkbox" name="send_password" id="send_password" disabled="disabled" /> <?php _e('Send this password to the user by email.','simple-user-password-generator'); ?></label></td>
 		</tr>
 	</table>
-	<script type="text/javascript">
-		jQuery('#pass1').keyup(function(){
-			var passval = jQuery(this).val();
-			if ( passval == '' ) jQuery('#send_password').attr('disabled','disabled');
-			else jQuery('#send_password').removeAttr('disabled');
-		});
-	</script>
 	<?php
 	}
 
 	public function user_profile_update_errors( $errors, $update, $user ) {
-		if ( !current_user_can( 'edit_users' ) || empty( $_POST['_simple_user_password_generator'] ) || !wp_verify_nonce( $_POST['_simple_user_password_generator'], 'simple-user-password-generator-reset' ) )
+		if ( ! current_user_can( 'edit_users' ) || empty( $_POST['_simple_user_password_generator'] ) || ! wp_verify_nonce( $_POST['_simple_user_password_generator'], 'simple-user-password-generator-reset' ) )
 			return;
 
 		$this->user_register( $user->ID );
 
-		if ( !$update || empty( $user->user_pass ) || empty( $_POST['send_password'] ) )
+		if ( ! $update || empty( $user->user_pass ) || empty( $_POST['send_password'] ) )
 			return;
 
 		$blogname = wp_specialchars_decode(get_option('blogname'), ENT_QUOTES);
@@ -103,4 +81,4 @@ class simple_user_password_generator {
 	}
 }
 
-$simple_local_avatars = new simple_user_password_generator;
+$simple_local_password_generator = new simple_user_password_generator;
