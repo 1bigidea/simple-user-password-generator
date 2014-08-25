@@ -2,9 +2,9 @@
 Contributors: jakemgold, 10up
 Donate link: http://10up.com/plugins/simple-user-password-generator-wordpress/
 Tags: users, password, security
-Requires at least: 3.2
-Tested up to: 3.6
-Stable tag: 2.0.2
+Requires at least: 3.8
+Tested up to: 4.0
+Stable tag: 3.0
 License: GPLv2
 
 Generate a secure password when adding or updating new users.
@@ -31,6 +31,10 @@ Localization ready; includes Spanish translation. Other translations welcome!
 1. New "Generate Password" button and "Encourage user to change their password" features seen on the add new users screen.
 
 == Changelog ==
+
+= 3.0 =
+* Refactored for performance / maintainability
+* Updated layout of controls for WordPress 3.8+
 
 = 2.0.2 =
 * Refactored / improved JavaScript (faster)
