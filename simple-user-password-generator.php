@@ -3,7 +3,7 @@
  Plugin Name: Simple User Password Generator
  Plugin URI: http://10up.com/plugins/simple-user-password-generator-wordpress/
  Description: Allows administrators to generate a secure password when adding new users.
- Version: 3.0
+ Version: 3.0.1
  Author: Jake Goldman, 10up
  Author URI: http://10up.com
  License: GPLv2 or later
@@ -41,7 +41,7 @@ class Simple_User_Password_Generator {
 	public static function _add_actions() {
 		add_action( 'admin_init', array( __CLASS__, 'admin_init' ) );
 		add_action( 'wp_ajax_simple_user_generate_password', array( __CLASS__, 'ajax_generate_password' ) );
-		add_action( 'user_register', array( __CLASS__, 'user_register' ) );
+		// add_action( 'user_register', array( __CLASS__, 'user_register' ) );
 		add_action( 'user_profile_update_errors', array( __CLASS__, 'user_profile_update_errors' ), 10, 3 );
 	}
 
